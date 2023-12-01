@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # configures an UBUNTU server hostnames localhost to 127.0.0.2 and facebook.com to 8.8.8.8
 
 cp /etc/hosts ~/hosts.new
