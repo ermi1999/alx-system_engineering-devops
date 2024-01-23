@@ -4,9 +4,5 @@ apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-if ! grep -q "location /redirect_me" /etc/nginx/sites-available/default; then
-	sed -i '/location/i \\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n' /etc/nginx/sites-available/default
-else
-	sed -i '/return 301/c\\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;' /etc/nginx/sites-available/default
-fi
+sed -i "24c\        location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default
 service nginx restart
