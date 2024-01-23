@@ -6,5 +6,5 @@ ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
 sed -i "24c\        location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" > /var/www/html/404.html
-sed -i "64c\        error_page 404 /404.html;" /etc/nginx/sites-available/default
+sed -i "25i\        error_page 404 /404.html;" /etc/nginx/sites-available/default
 service nginx restart
