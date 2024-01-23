@@ -1,44 +1,27 @@
 # setup a nginx to ubuntu server.
-
-package { 'nginx':
-  ensure => installed,
+exec {'update':
+  command  => 'apt-get -y update',
+  provider => 'shell'
 }
 
-service { 'nginx':
-  ensure     => running,
-  enable     => true,
-  hasstatus  => true,
-  hasrestart => true,
+package {'nginx':
+  ensure  => present,
+  require => Exec['update']
 }
 
-file { '/var/www/html/index.html':
+file {'/var/www/html/index.html':
   ensure  => file,
   content => 'Hello World!',
-  require => Package['nginx'],
+  require => Package['nginx']
 }
 
-file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => "
-server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+exec {'redirect':
+  command  => 'sed "40r\\tlocation /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default',
+  provider => 'shell',
+  require  => Package[nginx]
+}
 
-        root /var/www/html;
-        index index.html index.htm index.nginx-debian.html;
-
-        server_name _;
-
-	location /redirect_me {
-		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-
-	error_page 404 /404.html;
-	location / {
-		try_files ${uri} ${uri}/ =404;
-	}
-}  
-",
-  require => Package['nginx'],
-  notify  => Service['nginx'],
+service {'nginx':
+  ensure  => running,
+  require => Package['nginx']
 }
