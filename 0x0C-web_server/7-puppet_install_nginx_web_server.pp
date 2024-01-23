@@ -16,7 +16,7 @@ file {'/var/www/html/index.html':
 }
 
 exec {'redirect':
-  command  => 'sed "40r\\tlocation /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default',
+  command  => 'sed -i "24c\        location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default',
   provider => 'shell',
   require  => Package[nginx]
 }
