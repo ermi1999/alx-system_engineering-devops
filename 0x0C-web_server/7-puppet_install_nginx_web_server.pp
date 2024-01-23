@@ -14,10 +14,10 @@ exec {"ufw allow 'Nginx HTTP'":
   provider  => 'shell'
 }
 
-file {"/var/www/html/index.nginx-debian.html":
-  content => "Hello World!"
+file {'/var/www/html/index.nginx-debian.html':
+  content => 'Hello World!'
 }
 
-exec {"service nginx restart":
+exec {'service nginx restart':
   provider => 'shell'
 }
