@@ -27,7 +27,7 @@ service {'nginx':
 }
 
 exec {'modify_header':
-  command   => 'sed -i "12c\        add_header X-Served-By \'$hostname\';" /etc/nginx/nginx.conf'
-  provider  => 'shell'
-  require   => Package[nginx]
+  command  => "sed -i '12c\\        add_header X-Served-By \"${hostname}\";' /etc/nginx/nginx.conf",
+  provider => 'shell',
+  require  => Package[nginx],
 }
