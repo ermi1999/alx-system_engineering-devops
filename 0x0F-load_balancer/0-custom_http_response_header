@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# this script installs and configures a new nginx server on ubuntu
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sed -i "24c\        location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+sed -i "25i\        error_page 404 /404.html;" /etc/nginx/sites-available/default
+host=$(hostname)
+sed -i "12c\        add_header X-Served-By '$host';" /etc/nginx/nginx.conf
+service nginx restart
