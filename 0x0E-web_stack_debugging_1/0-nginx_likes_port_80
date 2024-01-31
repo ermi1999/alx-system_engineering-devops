@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # this script starts nginx server
-apt-get -y update
-apt-get install -y nginx
-service nginx start
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
