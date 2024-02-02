@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# this bash script will display information about subdomains.
+_print ()
+{
+  digged=$(dig $1.$2 | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print N,$0}')
+  subdomain=$1
+  type=$(echo "$digged" | awk '{print $4}')
+  destination=$(echo "$digged" | awk '{print $5}')
+  echo "The subdomain $subdomain is a $type record and points to $destination"
+  return 0
+}
+
+if [ ! $2 ]
+then
+  _print www $1
+  _print lb-01 $1
+  _print web-01 $1
+  _print web-02 $1
+else
+  _print $2 $1
+fi
