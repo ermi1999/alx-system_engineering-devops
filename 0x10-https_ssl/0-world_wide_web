@@ -3,7 +3,7 @@
 _print ()
 {
   # retry until the information is dogged
-  for (( i = 0; i < 30; i++)); do
+  for ((;;)); do
     digged=$(dig $1.$2 | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print N,$0}')
     if [[ -n "$digged" ]]
     then
