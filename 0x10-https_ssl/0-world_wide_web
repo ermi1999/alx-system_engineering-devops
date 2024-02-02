@@ -2,7 +2,16 @@
 # this bash script will display information about subdomains.
 _print ()
 {
-  digged=$(dig $1.$2 | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print N,$0}')
+  # retry until the information is dogged
+  for (( i = 0; i < 30; i++)); do
+    digged=$(dig $1.$2 | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print N,$0}')
+    if [[ -n "$digged" ]]
+    then
+      break
+    fi
+    sleep 1
+  done
+
   subdomain=$1
   type=$(echo "$digged" | awk '{print $4}')
   destination=$(echo "$digged" | awk '{print $5}')
