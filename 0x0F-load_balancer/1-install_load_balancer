@@ -4,7 +4,7 @@
 apt-get -y install --no-install-recommends software-properties-common
 yes | add-apt-repository ppa:vbernat/haproxy-2.0
 apt-get -y install haproxy=2.0.\*
-sudo echo "ENABLED=1" > /etc/default/haproxy
+echo "ENABLED=1" > /etc/default/haproxy
 # configure haproxy
 if grep -q "backend my_backend" /etc/haproxy/haproxy.cfg; then
 	head -n 34 /etc/haproxy/haproxy.cfg > temp && mv temp /etc/haproxy/haproxy.cfg
