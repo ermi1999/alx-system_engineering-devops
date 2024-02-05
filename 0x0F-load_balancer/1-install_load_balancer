@@ -2,10 +2,7 @@
 # sets up HAProxy server.
 # inatall haproxy
 apt-get -y update
-apt-get -y install --no-install-recommends software-properties-common
-yes | add-apt-repository ppa:vbernat/haproxy-2.0
-apt-get -y install haproxy=2.0.\*
-echo "ENABLED=1" > /etc/default/haproxy
+apt-get -y install haproxy
 # configure haproxy
 if grep -q "backend my_backend" /etc/haproxy/haproxy.cfg; then
 	head -n 34 /etc/haproxy/haproxy.cfg > temp && mv temp /etc/haproxy/haproxy.cfg
