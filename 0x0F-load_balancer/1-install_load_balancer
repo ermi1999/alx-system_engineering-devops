@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # sets up HAProxy server.
 # inatall haproxy
+apt-get -y update
 apt-get -y install --no-install-recommends software-properties-common
 yes | add-apt-repository ppa:vbernat/haproxy-2.0
 apt-get -y install haproxy=2.0.\*
