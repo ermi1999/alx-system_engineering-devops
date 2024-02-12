@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# runs a whoami command on a specified user
+
+su -c 'whoami' $1
