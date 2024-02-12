@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# configure firewall so it only accepts requests from port 22 80 and 443
+apt install ufw
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22
+ufw allow 80
+ufw allow 443
