@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# backs up all mysql databases and compresses it using tar.gz archive.
+mysqldump -u root -p$1 --all-databases > backup.sql && tar -czvf $(date +"%e-%m-%Y.tar.gz") ./backup.sql;
