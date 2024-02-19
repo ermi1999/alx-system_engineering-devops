@@ -17,8 +17,9 @@ if __name__ == "__main__":
     name = user[0].get('name')
     _dict = {userId: []}
     for todo in todos:
-        data = {"task": todo.get('title'), "completed": todo.get('completed'), "username": user[0].get('username')}
+        data = {"task": todo.get('title'),
+                "completed": todo.get('completed'),
+                "username": user[0].get('username')}
         _dict.get(userId).append(data)
     with open("{}.json".format(userId), 'w') as f:
         f.write(json.dumps(_dict))
-
