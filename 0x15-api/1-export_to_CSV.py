@@ -16,8 +16,6 @@ if __name__ == "__main__":
     username = user[0].get('username')
     with open('{}.csv'.format(sys.argv[1]), 'w') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        writer.writerow(
-                ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         for todo in todos:
             writer.writerow(
                     [sys.argv[1], username,
