@@ -6,7 +6,7 @@ import requests
 def number_of_subscribers(subreddit):
     """returns the number of subscribers in the subreddit."""
     res = requests.get(
-            "https://www.reddit.com/r/{}/about.json".format(
+            "https://www.reddit.com/r/{}/about/.json".format(
                 subreddit), allow_redirects=False, headers={
                     "User-Agent": "Mozilla/5.0"})
     if res.status_code != 200:

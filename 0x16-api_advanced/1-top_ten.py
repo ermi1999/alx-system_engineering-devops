@@ -6,7 +6,7 @@ import requests
 def top_ten(subreddit):
     """prints the top 10 posts in the subreddit"""
     res = requests.get(
-            "https://www.reddit.com/r/{}/hot.json".format(
+            "https://www.reddit.com/r/{}/hot/.json".format(
                 subreddit), allow_redirects=False, headers={
                     "User-Agent": "Mozilla/5.0"})
     if res.status_code != 200:
