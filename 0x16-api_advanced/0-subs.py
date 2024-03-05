@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """This module makes a request to the reddits api."""
-import requests
 
 
 def number_of_subscribers(subreddit):
     """returns the number of subscribers in the subreddit."""
+    import requests
     req = requests.get(
             "https://www.reddit.com/r/{}/about.json".format(
                 subreddit), allow_redirects=False)
